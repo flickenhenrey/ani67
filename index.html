@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AnimeFiles - Watch Free Anime Online, Stream Subbed and Dubbed</title>
+    <meta name="description" content="AnimeFiles is the best website to watch anime online for free. Watch anime with DUB, SUB in HD. No Ads GUARANTEED!">
+    <meta name="keywords" content="watch anime online free, animefiles, anime streaming, free anime">
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AnimeFiles">
+    <meta property="og:title" content="AnimeFiles - Watch Free Anime Online">
+    <meta property="og:description" content="Watch anime online for free in HD. SUB and DUB available.">
+    <link rel="icon" type="image/png" href="images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="images/favicon-16x16.png" sizes="16x16">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="css/bundle.css">
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+        /* Inline critical overrides */
+        body { background: #0c1116; color: #fff; font-family: 'Poppins', sans-serif; }
+
+        /* ---- HEADER ---- */
+        header { background: #0c1116; border-bottom: 1px solid rgba(228,95,58,0.15); position: sticky; top: 0; z-index: 999; }
+        header .container { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+        header .nav-wrapper { display: flex; align-items: center; gap: 12px; height: 60px; }
+        .btn.nav-btn { background: none; border: none; color: #fff; font-size: 1.1rem; cursor: pointer; padding: 8px; border-radius: 6px; transition: color 0.2s; }
+        .btn.nav-btn:hover { color: #E45F3A; }
+
+        /* Brand */
+        .brand { display: flex; align-items: center; text-decoration: none; margin: 0 auto; }
+        .brand img { height: 38px; width: auto; }
+
+        /* Nav menu */
+        .nav-menu { position: absolute; top: 60px; left: 0; right: 0; background: #0c1116; border-bottom: 1px solid rgba(228,95,58,0.2); display: none; z-index: 998; }
+        .nav-menu.open { display: block; }
+        .nav-menu > ul { display: flex; list-style: none; margin: 0; padding: 0 16px; gap: 4px; flex-wrap: wrap; }
+        .nav-menu > ul > li { position: relative; }
+        .nav-menu > ul > li > a { display: block; padding: 14px 12px; color: rgba(255,255,255,0.85); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+        .nav-menu > ul > li > a:hover, .nav-menu > ul > li > a.active { color: #E45F3A; }
+        .nav-menu > ul > li > ul { display: none; position: absolute; top: 100%; left: 0; background: #181d22; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px; min-width: 180px; z-index: 999; column-count: 4; column-gap: 0; }
+        .nav-menu > ul > li > ul li a { display: block; padding: 5px 10px; color: rgba(255,255,255,0.75); font-size: 0.82rem; text-decoration: none; border-radius: 4px; white-space: nowrap; }
+        .nav-menu > ul > li > ul li a:hover { background: rgba(228,95,58,0.12); color: #E45F3A; }
+        @media (min-width: 992px) {
+            .nav-menu { position: static; background: transparent; border: none; display: flex !important; align-items: center; flex: 1; margin: 0; }
+            .nav-menu > ul { flex-wrap: nowrap; overflow: visible; }
+            .nav-menu > ul > li:hover > ul { display: block; }
+        }
+
+        /* Search */
+        #search { flex: 1; max-width: 380px; position: relative; }
+        #search.active .inner { display: block !important; }
+        #search .inner { background: #181d22; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); overflow: visible; position: relative; }
+        #search .inner:focus-within { border-color: #E45F3A; }
+        #search .inner form { display: flex; align-items: center; padding: 0 12px; gap: 8px; }
+        #search .inner form input { flex: 1; background: none; border: none; outline: none; color: #fff; font-size: 0.88rem; padding: 10px 0; }
+        #search .inner form input::placeholder { color: rgba(255,255,255,0.4); }
+        #search .inner form .fa-magnifying-glass { color: rgba(255,255,255,0.5); font-size: 0.9rem; }
+        #search .inner form a.submit { color: rgba(255,255,255,0.5); font-size: 0.8rem; white-space: nowrap; text-decoration: none; transition: color 0.2s; }
+        #search .inner form a.submit:hover { color: #2EAF4E; }
+        #search_autocomplete { position: absolute; top: calc(100% + 6px); left: 0; right: 0; background: #fff; border-radius: 8px; box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 1000; overflow: hidden; }
+        #search_autocomplete ul { list-style: none; margin: 0; padding: 6px; }
+        #search_autocomplete ul li a { display: flex; align-items: center; padding: 8px; border-radius: 6px; text-decoration: none; }
+        #search_autocomplete ul li a:hover { background: #f5f5f5; }
+
+        /* ---- HERO / INDEX HEAD ---- */
+        .index-page .index-head { position: relative; text-align: center; padding: 70px 16px 50px; overflow: hidden; }
+        .index-page .index-head .index-bg {
+            position: absolute; inset: 0; pointer-events: none;
+            background: radial-gradient(ellipse at 65% 35%, rgba(228,95,58,0.13) 0%, transparent 55%),
+                        radial-gradient(ellipse at 15% 75%, rgba(46,175,78,0.09) 0%, transparent 50%);
+        }
+        .index-page .index-head .brand { justify-content: center; margin-bottom: 28px; }
+        .index-page .index-head .brand img { height: 70px; }
+        .index-page .index-head #search { max-width: 580px; margin: 0 auto 20px; display: block; }
+        .index-page .index-head #search .inner { display: block !important; }
+        .index-page .index-head #search .inner form { padding: 4px 16px; }
+        .index-page .index-head #search .inner form input { padding: 13px 0; font-size: 1rem; }
+        .most-searched { margin-bottom: 28px; font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+        .most-searched span { margin-right: 6px; }
+
+        /* ---- CONTAINER ---- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 16px; }
+        .mt-5 { margin-top: 2rem !important; }
+        .mb-4 { margin-bottom: 1.5rem !important; }
+
+        /* ---- SECTION HEADS ---- */
+        .shead { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .shead .title-left { display: flex; align-items: center; gap: 10px; }
+        .shead .title-left h2 { font-size: 1.05rem; font-weight: 700; margin: 0; color: #fff; }
+        .shead .title-left span.bar { display: inline-block; width: 4px; height: 18px; background: #E45F3A; border-radius: 2px; }
+        .shead a.view-more { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-decoration: none; }
+        .shead a.view-more:hover { color: #2EAF4E; }
+
+        /* Tabs */
+        .shead-tabs { display: flex; gap: 6px; }
+        .shead-tabs .tab { background: rgba(255,255,255,0.06); border: none; color: rgba(255,255,255,0.6); font-size: 0.78rem; padding: 5px 14px; border-radius: 20px; cursor: pointer; transition: all 0.2s; }
+        .shead-tabs .tab.active, .shead-tabs .tab:hover { background: #E45F3A; color: #fff; }
+
+        /* ---- ANIME GRID ---- */
+        .anime-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }
+        @media (min-width: 768px) { .anime-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); } }
+        @media (min-width: 1200px) { .anime-grid { grid-template-columns: repeat(6, 1fr); } }
+
+        .flw-item { position: relative; }
+        .film-poster { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 2/3; background: #181d22; }
+        .film-poster img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; }
+        .flw-item:hover .film-poster img { transform: scale(1.05); }
+        .film-poster-ahh { position: absolute; inset: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s; }
+        .flw-item:hover .film-poster-ahh { opacity: 1; }
+        .btn-play { width: 46px; height: 46px; border-radius: 50%; background: #E45F3A; color: #fff; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 1rem; box-shadow: 0 4px 16px rgba(228,95,58,0.5); transition: transform 0.2s; }
+        .btn-play:hover { transform: scale(1.1); color: #fff; }
+        .tick { position: absolute; bottom: 0; left: 0; right: 0; display: flex; gap: 4px; padding: 6px; background: linear-gradient(transparent, rgba(0,0,0,0.8)); }
+        .tick-item { font-size: 0.68rem; font-weight: 700; padding: 2px 6px; border-radius: 3px; }
+        .tick-rate { background: rgba(255,193,0,0.9); color: #111; }
+        .tick-eps { background: rgba(46,175,78,0.9); color: #fff; }
+        .tick-dub { background: rgba(228,95,58,0.9); color: #fff; }
+        .film-detail { padding: 8px 2px 0; }
+        .film-name a { color: #fff; text-decoration: none; font-size: 0.88rem; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.3; }
+        .film-name a:hover { color: #E45F3A; }
+        .fd-infor { display: flex; gap: 6px; margin-top: 4px; flex-wrap: wrap; }
+        .fdi-item { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+        .fdi-item + .fdi-item::before { content: '•'; margin-right: 6px; }
+
+        /* Skeleton loading */
+        .skeleton-card .film-poster { background: linear-gradient(90deg, #181d22 0, #242b31 50%, #181d22 100%); background-size: 200% 100%; animation: shimmer 1.2s ease-in-out infinite; }
+        .skeleton-card .film-name-sk { height: 12px; background: linear-gradient(90deg, #181d22 0, #242b31 50%, #181d22 100%); background-size: 200% 100%; animation: shimmer 1.2s ease-in-out infinite; border-radius: 4px; margin-top: 10px; }
+        @keyframes shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+
+        /* ---- TRENDING WIDGET ---- */
+        .load-top-view .item { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); align-items: center; }
+        .load-top-view .item:last-child { border-bottom: none; }
+        .load-top-view .item .rank { font-size: 1.4rem; font-weight: 900; color: rgba(255,255,255,0.15); width: 28px; flex-shrink: 0; }
+        .load-top-view .item .rank.top3 { color: #E45F3A; }
+        .load-top-view .item img { width: 44px; height: 60px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+        .load-top-view .item .info a { color: #fff; text-decoration: none; font-size: 0.84rem; font-weight: 600; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .load-top-view .item .info a:hover { color: #E45F3A; }
+        .load-top-view .item .info span { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+
+        /* ---- SIDEBAR LAYOUT ---- */
+        .home-layout { display: grid; grid-template-columns: 1fr 280px; gap: 28px; align-items: start; }
+        @media (max-width: 1100px) { .home-layout { grid-template-columns: 1fr; } }
+
+        /* ---- A-Z FOOTER ---- */
+        .top-footer { background: #0e1419; padding: 28px 0; }
+        .top-footer .wrapper { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+        .azlist > div:first-child { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .azlist > div:first-child + span { font-size: 0.8rem; color: rgba(255,255,255,0.45); display: block; margin-bottom: 12px; }
+        .azlist ul { list-style: none; display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; max-width: 700px; }
+        .azlist ul li a { display: inline-block; padding: 4px 10px; background: #181d22; border-radius: 4px; color: rgba(255,255,255,0.6); font-size: 0.78rem; text-decoration: none; transition: all 0.2s; }
+        .azlist ul li a:hover { background: #2EAF4E; color: #fff; }
+        .menu-footer { display: flex; gap: 16px; align-items: center; }
+        .menu-footer a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+        .menu-footer a:hover { color: #2EAF4E; }
+        .bot-footer { background: #080c0f; padding: 20px 0; }
+        .bot-footer .wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .bot-footer .wrapper > div > div:first-child { font-size: 0.88rem; font-weight: 700; color: #E45F3A; }
+        .bot-footer .wrapper > div > span { font-size: 0.75rem; color: rgba(255,255,255,0.35); display: block; margin-top: 4px; }
+        .bot-footer .wrapper > div .socials { display: flex; gap: 12px; margin-top: 8px; }
+        .bot-footer .wrapper > div .socials a { color: rgba(255,255,255,0.4); font-size: 1rem; transition: color 0.2s; }
+        .bot-footer .wrapper > div .socials a:hover { color: #E45F3A; }
+        .logo-footer img { height: 40px; }
+
+        /* ---- MODAL ---- */
+        .modal-poup { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+        .modal-poup.show { display: flex; }
+        #load-fade-poup { position: fixed; inset: 0; z-index: 9998; pointer-events: none; }
+
+        /* ---- CONTENT INFO SECTION ---- */
+        .index-content { background: rgba(255,255,255,0.02); border-radius: 12px; padding: 24px; margin-bottom: 32px; border: 1px solid rgba(255,255,255,0.05); }
+        .index-content h1 { font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .index-content h2 { font-size: 1rem; font-weight: 700; margin: 20px 0 8px; color: #E45F3A; }
+        .index-content p { font-size: 0.85rem; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 8px; }
+        .index-content strong { color: #fff; }
+        .index-content b { color: rgba(255,255,255,0.8); }
+
+        /* ---- MISC ---- */
+        .d-none { display: none !important; }
+        .text-center { text-align: center; }
+        section.mb-4 { margin-bottom: 1.5rem; }
+    </style>
+</head>
+<body>
+<script>var base_url = '/'; var auth = ''; var is_capcha_login = false; var is_capcha = false;</script>
+
+<div id="wrapper" class="index-page">
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <button class="btn nav-btn" id="nav-menu-btn">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <a class="btn nav-btn w2g-btn" href="/home" title="Watch Together">
+                    <i class="fa-solid fa-users-line"></i>
+                </a>
+                <a class="btn nav-btn shuffle-btn" href="/random" title="Random Anime">
+                    <i class="fa-solid fa-shuffle"></i>
+                </a>
+
+                <div class="nav-menu" id="main-nav">
+                    <ul>
+                        <li>
+                            <a href="javascript:;">Genres</a>
+                            <ul class="c4">
+                                <li><a href="/genre/action">Action</a></li>
+                                <li><a href="/genre/adventure">Adventure</a></li>
+                                <li><a href="/genre/comedy">Comedy</a></li>
+                                <li><a href="/genre/drama">Drama</a></li>
+                                <li><a href="/genre/ecchi">Ecchi</a></li>
+                                <li><a href="/genre/fantasy">Fantasy</a></li>
+                                <li><a href="/genre/horror">Horror</a></li>
+                                <li><a href="/genre/isekai">Isekai</a></li>
+                                <li><a href="/genre/magic">Magic</a></li>
+                                <li><a href="/genre/mecha">Mecha</a></li>
+                                <li><a href="/genre/mystery">Mystery</a></li>
+                                <li><a href="/genre/psychological">Psychological</a></li>
+                                <li><a href="/genre/romance">Romance</a></li>
+                                <li><a href="/genre/school">School</a></li>
+                                <li><a href="/genre/sci-fi">Sci-Fi</a></li>
+                                <li><a href="/genre/seinen">Seinen</a></li>
+                                <li><a href="/genre/shounen">Shounen</a></li>
+                                <li><a href="/genre/slice-of-life">Slice of Life</a></li>
+                                <li><a href="/genre/sports">Sports</a></li>
+                                <li><a href="/genre/supernatural">Supernatural</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:;">Types</a>
+                            <ul class="c1">
+                                <li><a href="/types/movie">Movie</a></li>
+                                <li><a href="/types/ova">OVA</a></li>
+                                <li><a href="/types/ona">ONA</a></li>
+                                <li><a href="/types/special">Special</a></li>
+                                <li><a href="/types/tv">TV</a></li>
+                                <li><a href="/types/music">Music</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/new-releases">New Releases</a></li>
+                        <li><a href="/updates">Updates</a></li>
+                        <li><a href="/ongoing">OnGoing</a></li>
+                        <li><a href="/schedule">Schedule</a></li>
+                    </ul>
+                </div>
+
+                <!-- Search -->
+                <div id="search">
+                    <button id="search-btn" class="btn nav-btn">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <div class="inner">
+                        <form action="/browser" autocomplete="off" class="ajax-search-quick">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="keyword" placeholder="Search anime...">
+                            <a class="submit" href="/browser"><i class="fa-solid fa-filter"></i> Filter</a>
+                            <i class="loadings icon-search"></i>
+                        </form>
+                        <div id="search_autocomplete" class="show-data" style="display:none"></div>
+                    </div>
+                </div>
+
+                <!-- Auth -->
+                <a class="btn nav-btn" href="/login" title="Login"><i class="fa-solid fa-user"></i></a>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <!-- HERO -->
+            <div class="index-head">
+                <div class="index-bg"></div>
+                <a href="/home" class="brand">
+                    <img src="images/logo.png" alt="AnimeFiles - Watch Free Anime Online">
+                </a>
+                <div id="search" style="max-width:600px;margin:0 auto 20px;display:block;">
+                    <div class="inner" style="display:block!important;">
+                        <form action="/browser" autocomplete="off" class="ajax-search-quick">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" name="keyword" placeholder="Search anime titles...">
+                            <a class="submit" href="/browser"><i class="fa-solid fa-filter"></i> Filter</a>
+                            <i class="loadings icon-search"></i>
+                        </form>
+                        <div id="search_autocomplete" class="show-data" style="display:none"></div>
+                    </div>
+                </div>
+                <div class="most-searched">
+                    <span>Trending:</span>
+                    <a href="/browser?keyword=One+Piece">One Piece</a>
+                    <a href="/browser?keyword=Demon+Slayer">Demon Slayer</a>
+                    <a href="/browser?keyword=Jujutsu+Kaisen">Jujutsu Kaisen</a>
+                    <a href="/browser?keyword=Solo+Leveling">Solo Leveling</a>
+                    <a href="/browser?keyword=Bleach">Bleach</a>
+                    <a href="/browser?keyword=Naruto">Naruto</a>
+                </div>
+                <a href="/home" class="btn btn-primary">WATCH NOW</a>
+            </div>
+
+            <!-- MAIN CONTENT + SIDEBAR -->
+            <div class="home-layout mt-5">
+
+                <!-- LEFT: Anime sections -->
+                <div>
+
+                    <!-- TRENDING NOW -->
+                    <section class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar"></span>
+                                <h2>Trending Now</h2>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px">
+                                <div class="shead-tabs">
+                                    <button class="tab active" onclick="loadAnimeSection('trending-now-container','top/anime',12);this.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));this.classList.add('active')">Today</button>
+                                    <button class="tab" onclick="loadAnimeSection('trending-now-container','top/anime?filter=bypopularity',12);this.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));this.classList.add('active')">Week</button>
+                                    <button class="tab" onclick="loadAnimeSection('trending-now-container','top/anime?filter=favorite',12);this.parentElement.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));this.classList.add('active')">Month</button>
+                                </div>
+                                <a href="/trending" class="view-more">View all <i class="fa-solid fa-chevron-right" style="font-size:0.65rem"></i></a>
+                            </div>
+                        </div>
+                        <div class="anime-grid" id="trending-now-container">
+                            <!-- Skeleton loaders -->
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:80%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:70%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:85%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:60%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:75%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:90%"></div></div>
+                        </div>
+                    </section>
+
+                    <!-- LATEST EPISODES -->
+                    <section class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar" style="background:#2EAF4E"></span>
+                                <h2>Latest Episodes</h2>
+                            </div>
+                            <div style="display:flex;align-items:center;gap:10px">
+                                <div class="shead-tabs">
+                                    <button class="tab active" onclick="loadAnimeSection('recent-container','anime?status=airing&order_by=popularity&sort=asc',20);setActiveTab(this)">Sub</button>
+                                    <button class="tab" onclick="loadAnimeSection('recent-container','anime?type=tv&status=airing',20);setActiveTab(this)">Dub</button>
+                                    <button class="tab" onclick="loadAnimeSection('recent-container','anime?type=movie&status=complete',20);setActiveTab(this)">Movies</button>
+                                </div>
+                                <a href="/recent" class="view-more">View all <i class="fa-solid fa-chevron-right" style="font-size:0.65rem"></i></a>
+                            </div>
+                        </div>
+                        <div class="anime-grid" id="recent-container">
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:80%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:65%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:90%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:70%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:80%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:55%"></div></div>
+                        </div>
+                    </section>
+
+                    <!-- MOST POPULAR -->
+                    <section class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar" style="background:#2EAF4E"></span>
+                                <h2>Most Popular</h2>
+                            </div>
+                            <a href="/popular" class="view-more">View all <i class="fa-solid fa-chevron-right" style="font-size:0.65rem"></i></a>
+                        </div>
+                        <div class="anime-grid" id="popular-container">
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:75%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:85%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:60%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:80%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:70%"></div></div>
+                            <div class="flw-item skeleton-card"><div class="film-poster"></div><div class="film-name-sk" style="width:90%"></div></div>
+                        </div>
+                    </section>
+
+                    <!-- INFO SECTION -->
+                    <div class="index-content mt-5">
+                        <h1>Watch Anime Online Free in HD – Only on AnimeFiles</h1>
+                        <p>Welcome to <strong>AnimeFiles</strong> – your trusted destination to <strong>watch anime online for free</strong> in high definition. Whether you're into action-packed adventures or heartwarming romances, our mission is to deliver a fast, ad-friendly streaming experience for every anime lover.</p>
+                        <h2>What Is AnimeFiles?</h2>
+                        <p><strong>AnimeFiles</strong> is a <strong>free anime streaming site</strong> that allows you to enjoy thousands of anime titles in HD quality with both subbed and dubbed versions. Our platform is designed to provide a clean, secure, and seamless experience.</p>
+                        <h2>Why AnimeFiles?</h2>
+                        <p><b>- Content Library:</b> Explore an extensive collection of anime — from timeless classics to the latest releases — all with English subtitles, and many with dubbed options.</p>
+                        <p><b>- Streaming Quality:</b> Stream in crisp 720p or 1080p HD, or adjust to 360p for slower connections.</p>
+                        <p><b>- Frequent Updates:</b> Our anime library is updated regularly with the newest episodes and trending series.</p>
+                        <p><b>- Device Compatibility:</b> Watch on any device — mobile, tablet, or desktop — with full functionality.</p>
+                        <p><b>Thank you for supporting AnimeFiles!</b></p>
+                    </div>
+
+                </div>
+
+                <!-- RIGHT: Sidebar -->
+                <aside>
+
+                    <!-- TOP AIRING -->
+                    <div class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar" style="background:#E45F3A"></span>
+                                <h2>Top Airing</h2>
+                            </div>
+                        </div>
+                        <div class="load-top-view" id="top-airing-sidebar">
+                            <div style="padding:20px;text-align:center"><div class="loadings" style="display:inline-block;width:24px;height:24px"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- TOP UPCOMING -->
+                    <div class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar" style="background:#2EAF4E"></span>
+                                <h2>Top Upcoming</h2>
+                            </div>
+                        </div>
+                        <div class="load-top-view" id="top-upcoming-sidebar">
+                            <div style="padding:20px;text-align:center"><div class="loadings" style="display:inline-block;width:24px;height:24px"></div></div>
+                        </div>
+                    </div>
+
+                    <!-- GENRES QUICK -->
+                    <div class="mb-4">
+                        <div class="shead">
+                            <div class="title-left">
+                                <span class="bar"></span>
+                                <h2>Genres</h2>
+                            </div>
+                        </div>
+                        <div style="display:flex;flex-wrap:wrap;gap:6px">
+                            <a href="/genre/action" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Action</a>
+                            <a href="/genre/adventure" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Adventure</a>
+                            <a href="/genre/comedy" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#2EAF4E';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Comedy</a>
+                            <a href="/genre/drama" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#2EAF4E';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Drama</a>
+                            <a href="/genre/fantasy" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Fantasy</a>
+                            <a href="/genre/horror" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Horror</a>
+                            <a href="/genre/isekai" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#2EAF4E';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Isekai</a>
+                            <a href="/genre/mecha" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Mecha</a>
+                            <a href="/genre/romance" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#2EAF4E';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Romance</a>
+                            <a href="/genre/shounen" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Shounen</a>
+                            <a href="/genre/slice-of-life" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#2EAF4E';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Slice of Life</a>
+                            <a href="/genre/supernatural" style="background:#181d22;color:rgba(255,255,255,0.7);padding:5px 12px;border-radius:20px;font-size:0.78rem;text-decoration:none;border:1px solid rgba(255,255,255,0.07);transition:all 0.2s" onmouseover="this.style.background='#E45F3A';this.style.color='#fff'" onmouseout="this.style.background='#181d22';this.style.color='rgba(255,255,255,0.7)'">Supernatural</a>
+                        </div>
+                    </div>
+
+                </aside>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="top-footer">
+            <div class="container">
+                <div class="wrapper">
+                    <div class="azlist">
+                        <div>A-Z List</div>
+                        <span>Searching anime order by alphabet name A to Z.</span>
+                        <ul>
+                            <li><a href="/az-list/all">All</a></li>
+                            <li><a href="/az-list/0-9">0-9</a></li>
+                            <li><a href="/az-list/A">A</a></li>
+                            <li><a href="/az-list/B">B</a></li>
+                            <li><a href="/az-list/C">C</a></li>
+                            <li><a href="/az-list/D">D</a></li>
+                            <li><a href="/az-list/E">E</a></li>
+                            <li><a href="/az-list/F">F</a></li>
+                            <li><a href="/az-list/G">G</a></li>
+                            <li><a href="/az-list/H">H</a></li>
+                            <li><a href="/az-list/I">I</a></li>
+                            <li><a href="/az-list/J">J</a></li>
+                            <li><a href="/az-list/K">K</a></li>
+                            <li><a href="/az-list/L">L</a></li>
+                            <li><a href="/az-list/M">M</a></li>
+                            <li><a href="/az-list/N">N</a></li>
+                            <li><a href="/az-list/O">O</a></li>
+                            <li><a href="/az-list/P">P</a></li>
+                            <li><a href="/az-list/Q">Q</a></li>
+                            <li><a href="/az-list/R">R</a></li>
+                            <li><a href="/az-list/S">S</a></li>
+                            <li><a href="/az-list/T">T</a></li>
+                            <li><a href="/az-list/U">U</a></li>
+                            <li><a href="/az-list/V">V</a></li>
+                            <li><a href="/az-list/W">W</a></li>
+                            <li><a href="/az-list/X">X</a></li>
+                            <li><a href="/az-list/Y">Y</a></li>
+                            <li><a href="/az-list/Z">Z</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-footer">
+                        <a href="/request">REQUEST</a>
+                        <a href="/contact">CONTACT US</a>
+                        <a href="/privacy">PRIVACY</a>
+                        <a href="/dmca">DMCA</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bot-footer">
+            <div class="container">
+                <div class="wrapper">
+                    <div>
+                        <div>Copyright &copy; AnimeFiles. All Rights Reserved.</div>
+                        <span>This site does not store any files on its server. All contents are provided by non-affiliated third parties.</span>
+                        <div class="socials" style="margin-top:8px">
+                            <a href="#" target="_blank" rel="nofollow"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#" target="_blank" rel="nofollow"><i class="fa-brands fa-discord"></i></a>
+                            <a href="#" target="_blank" rel="nofollow"><i class="fa-brands fa-reddit-alien"></i></a>
+                            <a href="#" target="_blank" rel="nofollow"><i class="fa-brands fa-telegram"></i></a>
+                        </div>
+                    </div>
+                    <div class="logo-footer">
+                        <img src="images/logo.png" alt="AnimeFiles">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="load-fade-poup"></div>
+
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/function.js"></script>
+<script>
+function setActiveTab(btn) {
+    btn.closest('.shead-tabs').querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+// Load sidebar top airing
+function loadSidebar(containerId, endpoint) {
+    fetch('https://api.jikan.moe/v4/' + endpoint + '&limit=10')
+        .then(r => r.json())
+        .then(data => {
+            if (!data.data) return;
+            var html = '';
+            data.data.slice(0,10).forEach(function(anime, i) {
+                var slug = (anime.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+                var img = anime.images?.jpg?.small_image_url || '';
+                var ep = anime.episodes ? 'Ep: ' + anime.episodes : (anime.status || '');
+                html += '<div class="item">' +
+                    '<div class="rank' + (i < 3 ? ' top3' : '') + '">' + (i+1) + '</div>' +
+                    '<img src="' + img + '" alt="' + anime.title + '" onerror="this.style.display=\'none\'">' +
+                    '<div class="info">' +
+                    '<a href="/watch/' + slug + '">' + anime.title + '</a>' +
+                    '<span>' + ep + '</span>' +
+                    '</div></div>';
+            });
+            document.getElementById(containerId).innerHTML = html;
+        })
+        .catch(() => {});
+}
+
+$(document).ready(function() {
+    // Small delay between API calls to avoid rate limits
+    setTimeout(() => loadSidebar('top-airing-sidebar', 'top/anime?filter=airing&'), 200);
+    setTimeout(() => loadSidebar('top-upcoming-sidebar', 'top/anime?filter=upcoming&'), 800);
+    // Show loadings spinners
+    document.querySelectorAll('.loadings').forEach(el => el.style.display = 'inline-block');
+});
+</script>
+</body>
+</html>

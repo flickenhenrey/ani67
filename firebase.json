@@ -1,0 +1,18 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "README.md"
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+      { "source": "/watch/**", "destination": "/watch.html" },
+      { "source": "/browser", "destination": "/browser.html" },
+      { "source": "/home",    "destination": "/index.html" },
+      { "source": "/random",  "destination": "/index.html" }
+    ]
+  }
+}
